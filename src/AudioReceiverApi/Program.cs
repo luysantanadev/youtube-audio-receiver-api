@@ -87,7 +87,7 @@ app.MapPost("/upload-audio", [Authorize, IgnoreAntiforgeryToken] async (
 
     var streamWav = await audioProcessor.WavConverterAsync(file);
     var (pathMinio, etag) = await uploader.SaveAsync(file, userId);
-    var (semTempo, comTempo) = await transcriber.ProcessAsync(streamWav);
+    var (withoutTimestamp, withTimestamp) = await transcriber.ProcessAsync(streamWav);
 
     var audio = new Audio
     {
@@ -96,8 +96,8 @@ app.MapPost("/upload-audio", [Authorize, IgnoreAntiforgeryToken] async (
         MinioFilePath = pathMinio.Trim(),
         MinioEtag = etag.Trim().Replace("\"",""),
         UserId = userId.Trim(),
-        TranscriptionWithoutTimestamp = semTempo.Trim(),
-        TrascriptionWithTimestamp = comTempo.Trim(),
+        TranscriptionWithoutTimestamp = withoutTimestamp.Trim(),
+        TrascriptionWithTimestamp = withTimestamp.Trim(),
         CreatedAt = DateTimeOffset.Now
     };
 

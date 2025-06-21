@@ -33,9 +33,7 @@ public sealed class WhisperTranscriber : ITranscriber
             RuntimeOptions.RuntimeLibraryOrder =
             [
                 RuntimeLibrary.Cuda,
-                RuntimeLibrary.Vulkan,
-                RuntimeLibrary.Cpu,
-                RuntimeLibrary.CpuNoAvx
+                RuntimeLibrary.Cpu
             ];
 
             if (!File.Exists(_path))
@@ -54,17 +52,17 @@ public sealed class WhisperTranscriber : ITranscriber
 
             stream.Seek(0, SeekOrigin.Begin);
 
-            var semTempo = new StringBuilder();
-            var comTempo = new StringBuilder();
+            var withoutTimestamp = new StringBuilder();
+            var withTimestamp = new StringBuilder();
 
             await foreach (var result in processor.ProcessAsync(stream))
             {
-                comTempo.AppendLine($"{result.Start}-{result.End}-{result.Text}");
-                semTempo.AppendLine(result.Text);
+                withTimestamp.AppendLine($"{result.Start}-{result.End}-{result.Text}");
+                withoutTimestamp.AppendLine(result.Text);
             }
 
-            _logger.LogInformation("Transcrição concluída com sucesso. Total de linhas: {Linhas}", semTempo.ToString().Split('\n').Length);
-            return (semTempo.ToString(), comTempo.ToString());
+            _logger.LogInformation("Transcrição concluída com sucesso. Total de linhas: {Linhas}", withoutTimestamp.ToString().Split('\n').Length);
+            return (withoutTimestamp.ToString(), withTimestamp.ToString());
         }
         catch (Exception ex)
         {
