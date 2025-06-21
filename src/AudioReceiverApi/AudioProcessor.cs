@@ -4,6 +4,11 @@ using Microsoft.Extensions.Logging;
 
 namespace AudioReceiverApi;
 
+public interface IAudioProcessor
+{
+    Task<Stream> WavConverterAsync(IFormFile sourceFile);
+}
+
 public sealed class AudioProcessor : IAudioProcessor
 {
     private readonly ILogger<AudioProcessor> _logger;

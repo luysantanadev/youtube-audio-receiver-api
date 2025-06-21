@@ -5,6 +5,11 @@ using Minio.DataModel.Args;
 
 namespace AudioReceiverApi;
 
+public interface IMinioUploader
+{
+    Task<(string Path, string Etag)> SaveAsync(IFormFile file, string userId);
+}
+
 public sealed class MinioUploader : IMinioUploader
 {
     private readonly IMinioClient _minio;

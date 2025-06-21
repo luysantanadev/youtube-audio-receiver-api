@@ -3,6 +3,11 @@ using Raven.Client.Documents;
 
 namespace AudioReceiverApi;
 
+public interface IAudioRepository
+{
+    Task SaveAsync(Audio audio);
+}
+
 public sealed class AudioRepository : IAudioRepository
 {
     private readonly IDocumentStore _store;

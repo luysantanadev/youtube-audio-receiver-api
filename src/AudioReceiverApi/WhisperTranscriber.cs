@@ -6,6 +6,11 @@ using Whisper.net.LibraryLoader;
 
 namespace AudioReceiverApi;
 
+public interface ITranscriber
+{
+    Task<(string WithoutTimestamp, string WithTimestamp)> ProcessAsync(Stream stream);
+}
+
 public sealed class WhisperTranscriber : ITranscriber
 {
     private readonly string _path;
