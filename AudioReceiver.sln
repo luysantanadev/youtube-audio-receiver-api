@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioReceiverApi", "src\AudioReceiverApi\AudioReceiverApi.csproj", "{FE96E358-DE43-4262-AED8-2FD7E71A8AFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE96E358-DE43-4262-AED8-2FD7E71A8AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE96E358-DE43-4262-AED8-2FD7E71A8AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE96E358-DE43-4262-AED8-2FD7E71A8AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE96E358-DE43-4262-AED8-2FD7E71A8AFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
